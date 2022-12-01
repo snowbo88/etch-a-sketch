@@ -4,7 +4,8 @@ const container = document.querySelector('#container');
 
 for (let step = 0; step < 16; step++) {
     const div = document.createElement('div');
-    // hi.textContent = "AH" + step;
     div.id = step;
+    div.className = "step";
+    div.textContent = step;
     container.appendChild(div);
 }
