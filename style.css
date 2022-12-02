@@ -1,20 +1,24 @@
+body {
+    display: grid;
+    justify-content: center;
+}
+
 #container {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-flow: row wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-auto-rows: 100px;
+    grid-auto-columns: 100px;
+    grid-gap: 2px;
 }
 
 .step {
-    /* flex: 1 1 400px; */
-    flex-basis: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: black;
-    padding: 5px;
-    width: 100px;
-    height: 100px;
     color: white;
 }
 
-/* div {
-        border-color: black;
+/* .step:hover{
+    background-color: white;
 } */

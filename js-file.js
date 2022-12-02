@@ -1,11 +1,12 @@
 const container = document.querySelector('#container');
 
-// container.appendChild(hi);
-
-for (let step = 0; step < 16; step++) {
+// creates number of squares
+const squareCount = 16;
+for (let step = 0; step < squareCount; step++) {
     const div = document.createElement('div');
     div.id = step;
     div.className = "step";
     div.textContent = step;
     container.appendChild(div);
 }
+
