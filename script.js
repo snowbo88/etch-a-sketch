@@ -1,24 +1,24 @@
 // Global Variables
 const canvasWidth = 960;
-var column = 16;
-var rowCount = canvasWidth / column;
-var pixelCount = Math.pow(column, 2);
+var pixelDensity = 16;
+var rowCount = canvasWidth / pixelDensity;
+var pixelCount = Math.pow(pixelDensity, 2);
 
 // Initialize canvas
-updatePixelCount();
+draw();
 
 // Change canvas on slider change
-document.getElementById("column").addEventListener("input", updatePixelCount);
+document.getElementById("pixelDensity").addEventListener("input", draw);
 
 // functions below this line
-function updatePixelCount() {
+function draw() {
     clearCanvas();
 
-    column = document.getElementById("column").value;
-    pixelCount = Math.pow(column, 2);
+    pixelDensity = document.getElementById("pixelDensity").value;
+    pixelCount = Math.pow(pixelDensity, 2);
 
     populatePixel(pixelCount);
-    rowCount = canvasWidth / column;
+    rowCount = canvasWidth / pixelDensity;
     setCanvas(rowCount);
 
     paintPixel();
@@ -26,7 +26,7 @@ function updatePixelCount() {
 
 // resets canvas
 function clearCanvas() {
-    const pixels = document.querySelectorAll(".pixel, .pixelBlack");
+    const pixels = document.querySelectorAll(".pixel, .pixelBlack, .pixelColor");
     pixels.forEach((pixel) => {
         pixel.remove();
     });
@@ -37,7 +37,7 @@ function setCanvas(rowCount) {
     const container = document.getElementById('container');
     container.style.gridAutoColumns = `${rowCount}px`;
     container.style.gridAutoRows = `${rowCount}px`;
-    container.style.gridTemplateColumns = `repeat(${column},${rowCount}px)`;
+    container.style.gridTemplateColumns = `repeat(${pixelDensity},${rowCount}px)`;
 }
 
 // creates individual pixel divs
@@ -45,23 +45,42 @@ function populatePixel(pixelCount) {
     for (let pixel = 0; pixel < pixelCount; pixel++) {
         const div = document.createElement('div');
         div.className = "pixel";
-        // div.textContent = pixel;
+        // div.textContent = pixel; //shows number of pixel
         container.appendChild(div);
     }
 }
 
 // on hover, change className from pixel to pixelBlack
 // may need a switch statement here
-function paintPixel() {
-    const pixelArray = document.querySelectorAll(".pixel");
+function pixelColorSet(pixelArray, colorClass) {
     pixelArray.forEach((pixel) => {
         pixel.addEventListener('mouseover', () => {
-            pixel.className = "pixelBlack";
+            pixel.className = colorClass;
         });
     });
 }
 
-// TODO check if toggle switch is set to black or color
-function setColorMode() {
+function paintPixel() {
+    const pixelArray = document.querySelectorAll(".pixel");
+    var color = document.getElementById("color");
 
+    // initializes color, even when pixel density is changed
+    if (color.checked) {
+        pixelColorSet(pixelArray, "pixelColor");
+    }
+    else {
+        pixelColorSet(pixelArray, "pixelBlack");
+    }
+
+    // listen for changes
+    color.addEventListener('change', () => {
+        if (color.checked) {
+            pixelColorSet(pixelArray, "pixelColor");
+        }
+        else {
+            pixelColorSet(pixelArray, "pixelBlack");
+        }
+    })
 }
+
+
