@@ -23,12 +23,3 @@ div.pixel {
     background-color: white;
     color: black;
 }
-
-div.pixelBlack {
-    background-color: black;
-    color: white;
-}
-
-div.pixelColor {
-    background-color: red;
-}
