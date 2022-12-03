@@ -2,33 +2,33 @@
 const canvasWidth = 960;
 var column = 16;
 var rowCount = canvasWidth / column;
-var squareCount = Math.pow(column, 2);
+var pixelCount = Math.pow(column, 2);
 
 // Initialize canvas
-updateSquareCount();
+updatePixelCount();
 
 // Change canvas on slider change
-document.getElementById("column").addEventListener("input", updateSquareCount);
+document.getElementById("column").addEventListener("input", updatePixelCount);
 
 // functions below this line
-function updateSquareCount() {
+function updatePixelCount() {
     clearCanvas();
 
     column = document.getElementById("column").value;
-    squareCount = Math.pow(column, 2);
+    pixelCount = Math.pow(column, 2);
 
-    populateSquare(squareCount);
+    populatePixel(pixelCount);
     rowCount = canvasWidth / column;
     setCanvas(rowCount);
 
-    paintSquare();
+    paintPixel();
 }
 
 // resets canvas
 function clearCanvas() {
-    const squares = document.querySelectorAll(".square, .squareHover");
-    squares.forEach((square) => {
-        square.remove();
+    const pixels = document.querySelectorAll(".pixel, .pixelBlack");
+    pixels.forEach((pixel) => {
+        pixel.remove();
     });
 };
 
@@ -40,22 +40,28 @@ function setCanvas(rowCount) {
     container.style.gridTemplateColumns = `repeat(${column},${rowCount}px)`;
 }
 
-// creates individual square divs
-function populateSquare(squareCount) {
-    for (let square = 0; square < squareCount; square++) {
+// creates individual pixel divs
+function populatePixel(pixelCount) {
+    for (let pixel = 0; pixel < pixelCount; pixel++) {
         const div = document.createElement('div');
-        div.className = "square";
-        // div.textContent = square;
+        div.className = "pixel";
+        // div.textContent = pixel;
         container.appendChild(div);
     }
 }
 
-// on hover, change className from square to squareHover
-function paintSquare() {
-    const squareArray = document.querySelectorAll(".square");
-    squareArray.forEach((square) => {
-        square.addEventListener('mouseover', () => {
-            square.className = "squareHover";
+// on hover, change className from pixel to pixelBlack
+// may need a switch statement here
+function paintPixel() {
+    const pixelArray = document.querySelectorAll(".pixel");
+    pixelArray.forEach((pixel) => {
+        pixel.addEventListener('mouseover', () => {
+            pixel.className = "pixelBlack";
         });
     });
+}
+
+// TODO check if toggle switch is set to black or color
+function setColorMode() {
+
 }

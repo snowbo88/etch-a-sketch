@@ -19,12 +19,16 @@ h1 {
     align-items: center;
 }
 
-div.square {
+div.pixel {
     background-color: white;
     color: black;
 }
 
-div.squareHover {
+div.pixelBlack {
     background-color: black;
     color: white;
+}
+
+div.pixelColor{
+
 }

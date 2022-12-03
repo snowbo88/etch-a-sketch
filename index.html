@@ -13,11 +13,19 @@
 
 <body>
     <h1>Etch-a-Sketch</h1>
+    <!-- color toggle -->
+    <div id="color">
+        <input type="checkbox" name="color" id="color"></input>
+        <label for="color">Color</label>
+    </div>
+
+    <!-- slider -->
     <div id="slider">
-        <label for="column">Columns: 16</label>
+        <label for="column">Pixel Density: 16</label>
         <input type="range" id="column" name="column" min="16" max="100" value="16">
         100
     </div>
+
     <div id="container"></div>
 </body>
 
